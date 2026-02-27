@@ -3,17 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto17
+      java: corretto21
 
   build:
     commands:
-      - mvn clean package
-
-  post_build:
-    commands:
-      - mkdir bundle
+      - mvn -B clean package
+      - mkdir -p bundle
       - cp target/*.jar bundle/app.jar
-      - echo "web: java -jar app.jar" > bundle/Procfile
+      - printf "web: java -jar app.jar\n" > bundle/Procfile
       - cd bundle
       - zip -r ../app-bundle.zip .
       - cd ..
