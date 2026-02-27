@@ -14,7 +14,9 @@ phases:
       - mkdir bundle
       - cp target/*.jar bundle/app.jar
       - echo "web: java -jar app.jar" > bundle/Procfile
-      - cd bundle && zip -r ../app-bundle.zip .
+      - cd bundle
+      - zip -r ../app-bundle.zip .
+      - cd ..
 
 artifacts:
   files:
